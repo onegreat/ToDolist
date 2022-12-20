@@ -29,14 +29,20 @@ const render = function () {
         li.querySelector('.todo-complete').addEventListener('click', function () {
             item.completed = !item.completed
 
+
             render()
 
         })
 
         li.querySelector('.todo-remove').addEventListener('click', function () {
-            li.classList.remove('todo-item')
-            li.remove()
+            toDoData.forEach(function (item) {
 
+                toDoData.splice(toDoData, 1)
+                render()
+                // li.classList.remove('todo-item')
+                // li.remove()
+                console.log(toDoData)
+            })
         })
     })
 }
@@ -49,6 +55,7 @@ todoControl.addEventListener('submit', function (event) {
     event.preventDefault()
 
     const newToDo = {
+        id: toDoData.length,
         text: headerInput.value,
         completed: false
     }
