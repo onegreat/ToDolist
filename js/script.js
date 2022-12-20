@@ -10,7 +10,8 @@ const render = function () {
     todoList.innerHTML = ''
     todoCompleted.innerHTML = ''
 
-    toDoData.forEach(function (item) {
+    toDoData.forEach(function (item, idX, arr) {
+
         const li = document.createElement('li')
 
         li.classList.add('todo-item')
@@ -28,21 +29,12 @@ const render = function () {
 
         li.querySelector('.todo-complete').addEventListener('click', function () {
             item.completed = !item.completed
-
-
             render()
-
         })
 
         li.querySelector('.todo-remove').addEventListener('click', function () {
-            toDoData.forEach(function (item) {
-
-                toDoData.splice(toDoData, 1)
-                render()
-                // li.classList.remove('todo-item')
-                // li.remove()
-                console.log(toDoData)
-            })
+            toDoData.splice(idX, 1)
+            render()
         })
     })
 }
