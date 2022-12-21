@@ -3,6 +3,7 @@ const headerInput = document.querySelector('.header-input')
 const todoList = document.querySelector('.todo-list')
 const todoCompleted = document.querySelector('.todo-completed')
 const todoRemove = document.querySelector('.todo-remove')
+const toDoMemory = JSON.parse(localStorage.getItem('toDo')) || []
 
 const toDoData = []
 
@@ -37,7 +38,7 @@ const render = function () {
             render()
         })
     })
-    localStorage.setItem('toDoData', JSON.stringify(toDoData))
+    localStorage.setItem('toDoData', JSON.stringify(toDoMemory))
 }
 
 
