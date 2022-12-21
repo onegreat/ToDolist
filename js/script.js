@@ -5,13 +5,12 @@ const todoCompleted = document.querySelector('.todo-completed')
 const todoRemove = document.querySelector('.todo-remove')
 const toDoMemory = JSON.parse(localStorage.getItem('toDo')) || []
 
-const toDoData = []
 
 const render = function () {
     todoList.innerHTML = ''
     todoCompleted.innerHTML = ''
 
-    toDoData.forEach(function (item, idX, arr) {
+    toDoMemory.forEach(function (item, idX, arr) {
 
         const li = document.createElement('li')
 
@@ -34,11 +33,11 @@ const render = function () {
         })
 
         li.querySelector('.todo-remove').addEventListener('click', function () {
-            toDoData.splice(idX, 1)
+            toDoMemory.splice(idX, 1)
             render()
         })
     })
-    localStorage.setItem('toDoData', JSON.stringify(toDoMemory))
+    localStorage.setItem('toDoMemory', JSON.stringify(toDoMemory))
 }
 
 
@@ -49,12 +48,12 @@ todoControl.addEventListener('submit', function (event) {
     event.preventDefault()
     if (headerInput.value.trim()) {
         const newToDo = {
-            id: toDoData.length,
+            id: toDoMemory.length,
             text: headerInput.value,
             completed: false
         }
 
-        toDoData.push(newToDo)
+        toDoMemory.push(newToDo)
         headerInput.value = ''
 
         render()
