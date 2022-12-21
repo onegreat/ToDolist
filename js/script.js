@@ -37,7 +37,7 @@ const render = function () {
             render()
         })
     })
-
+    localStorage.setItem('toDoData', JSON.stringify(toDoData))
 }
 
 
