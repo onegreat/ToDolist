@@ -37,6 +37,7 @@ const render = function () {
             render()
         })
     })
+
 }
 
 
@@ -45,15 +46,20 @@ const render = function () {
 console.log(todoList)
 todoControl.addEventListener('submit', function (event) {
     event.preventDefault()
+    if (headerInput.value.trim()) {
+        const newToDo = {
+            id: toDoData.length,
+            text: headerInput.value,
+            completed: false
+        }
 
-    const newToDo = {
-        id: toDoData.length,
-        text: headerInput.value,
-        completed: false
+        toDoData.push(newToDo)
+        headerInput.value = ''
+
+        render()
+    } else {
+        headerInput.value = ''
     }
-
-    toDoData.push(newToDo)
-    headerInput.value = ''
-
-    render()
 })
+
+render()
